@@ -1,0 +1,19 @@
+{
+  "name": "learningreact",
+  "version": "1.0.0",
+  "description": "learning_react_redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sitaramyadav/LearningReact.git"
+  },
+  "author": "Seetaram Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sitaramyadav/LearningReact/issues"
+  },
+  "homepage": "https://github.com/sitaramyadav/LearningReact#readme"
+}

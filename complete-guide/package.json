@@ -1,10 +1,17 @@
 {
-  "name": "learningreact",
-  "version": "1.0.0",
-  "description": "learning_react_redux",
-  "main": "index.js",
+  "name": "complete-guide",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
   "scripts": {
-    "test": "npm test"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",

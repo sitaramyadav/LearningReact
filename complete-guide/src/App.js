@@ -12,7 +12,12 @@ class App extends Component {
         ]
     };
     clickSwitchHandler  = () => {
-        console.log('Switch clicked called :)!!!!!');
+        this.setState({person:[
+                {name:'newFirstName', age:33},
+                {name:'newFirstName2', age: 34},
+                {name:'newFirstName3', age: 54}
+            ]})
+
     };
 
     render() {

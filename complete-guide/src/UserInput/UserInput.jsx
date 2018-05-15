@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserInput.css'
+import '../UserOutput/UserOutput.css'
 
 const userInput = (props) => {
     const inputStyle = {

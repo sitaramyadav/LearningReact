@@ -1,61 +1,74 @@
 import React, {Component} from 'react';
 import './App.css';
-
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import Person from './Person/Person'
+import './Person/Person.css'
 
 class App extends Component {
-    state = {
-        username: 'Seetaram'
+    constructor() {
+        super();
+        this.state = {
+            persons: [
+                {id: 'first_person', name: 'Max', age: 21},
+                {id: 'second_person', name: 'Maxmallian', age: 23},
+                {id: 'thired_person', name: 'Brandon', age: 25}
+            ],
+            showPerson: false
+        }
+        this.togglePersonHandler = this.togglePersonHandler.bind(this);
+        this.deletePersonHandler = this.deletePersonHandler.bind(this);
+        this.nameChangeHandler = this.nameChangeHandler.bind(this);
     }
-    usernameChangedHandler = (event) => {
-        this.setState({username: event.target.value});
+
+    togglePersonHandler() {
+        const doesShow = false;
+        this.setState({showPerson: !doesShow})
     }
+
+    deletePersonHandler(personIndex) {
+        let person = [...this.state.persons];
+        person.splice(personIndex, 1);
+        this.setState({persons: person});
+
+    }
+
+    nameChangeHandler(event, id,index) {
+        // const person = this.state.persons.find();
+        this.setState({persons:[...this.state.persons,
+            this.state.persons[index].name= event.target.value]
+        });
+    }
+
 
     render() {
+        const style = {
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        }
+        let persons = null;
+
+        if (this.state.showPerson) {
+            console.log(this.state.persons)
+            persons = this.state.persons.map((person, index) => {
+                return <Person name={person.name}
+                               age={person.age}
+                               click={() => this.deletePersonHandler(index)}
+                               key={person.id}
+                               changed={(event) => this.nameChangeHandler(event, person.id, index)}
+                />
+            })
+        }
         return (
             <div className="App">
-                {/*<h1>Hello I am react App</h1>*/}
-                {/*<button style={style} onClick={this.clickSwitchHandler}> Switch clicked</button>*/}
-                {/*<Person name={this.state.person[0].name}*/}
-                {/*age={this.state.person[0].age}/>*/}
-                {/*<Person onChange={this.nameHandler}*/}
-                {/*name={this.state.person[1].name}*/}
-                {/*age={this.state.person[1].age}*/}
-                {/*click={this.clickSwitchHandler.bind(this, 'Max')}*/}
-                {/*changed={this.nameHandler}> My hobbies: Racing>*/}
-
-                {/*</Person>*/}
-                {/*<Person name={this.state.person[2].name}*/}
-                {/*age={this.state.person[2].age}/>*/}
-
-                {/*<ol>*/}
-                    {/*<li>Create TWO new components: UserInput and UserOutput</li>*/}
-                    {/*<li>UserInput should hold an input element, UserOutput two paragraphs</li>*/}
-                    {/*<li>Output multiple UserOutput components in the App component (any paragraph texts of your*/}
-                        {/*choice)*/}
-                    {/*</li>*/}
-                    {/*<li>Pass a username (of your choice) to UserOutput via props and display it there</li>*/}
-                    {/*<li>Add state to the App component (=> the username) and pass the username to the UserOutput*/}
-                        {/*component*/}
-                    {/*</li>*/}
-                    {/*<li>Add a method to manipulate the state (=> an event-handler method)</li>*/}
-                    {/*<li>Pass the event-handler method reference to the UserInput component and bind it to the*/}
-                        {/*input-change event*/}
-                    {/*</li>*/}
-                    {/*<li>Ensure that the new input entered by the user overwrites the old username passed to UserOutput*/}
-                    {/*</li>*/}
-                    {/*<li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>*/}
-                    {/*<li>Add styling of your choice to your components/ elements in the components - both with inline*/}
-                        {/*styles and stylesheets*/}
-                    {/*</li>*/}
-                {/*</ol>*/}
-                <UserInput changed={this.usernameChangedHandler}
-                           currentName={this.state.username}/>
-                <UserOutput userName={this.state.username}/>
-                <UserOutput userName={this.state.username}/>
-                <UserOutput userName="Ben"/>
+                <h1>Hello I am react App</h1>
+                <button style={style}
+                        onClick={this.togglePersonHandler}> Toggle Person
+                </button>
+                {persons}
             </div>
+            // React.createElement('div',null,'h1','Hi I\'m a react App'); // This is actually how react complies it.
         );
     }
 }

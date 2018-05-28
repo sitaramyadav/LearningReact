@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from './Person/Person'
-import './Person/Person.css'
+import Person from './components/Persons/Person/Person'
+import './components/Persons/Person/Person.css'
 
 class App extends Component {
     constructor() {
@@ -31,11 +31,21 @@ class App extends Component {
 
     }
 
-    nameChangeHandler(event, id,index) {
+    nameChangeHandler(event, id) {
         // const person = this.state.persons.find();
-        this.setState({persons:[...this.state.persons,
-            this.state.persons[index].name= event.target.value]
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id === id;
         });
+
+        const person = {...this.state.persons[personIndex]};
+        // const person = Object.assign({},this.state.persons[personIndex]);
+        //this is alternative of spread operator for objects;
+        person.name = event.target.value;
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+        this.setState({
+            persons: persons
+        })
     }
 
 
@@ -47,19 +57,23 @@ class App extends Component {
             padding: '8px',
             cursor: 'pointer'
         }
+
         let persons = null;
 
         if (this.state.showPerson) {
-            console.log(this.state.persons)
-            persons = this.state.persons.map((person, index) => {
-                return <Person name={person.name}
-                               age={person.age}
-                               click={() => this.deletePersonHandler(index)}
-                               key={person.id}
-                               changed={(event) => this.nameChangeHandler(event, person.id, index)}
-                />
-            })
+            persons = (
+                <div>
+                    {this.state.persons.map((person, index) => {
+                        return <Person
+                            click={this.deletePersonHandler(index)}
+                            name={person.name}
+                            age={person.age}
+                            key={person.id}
+                            changed={(event) => this.nameChangeHandler(event, person.id)}/>
+                    })}
+                </div>)
         }
+
         return (
             <div className="App">
                 <h1>Hello I am react App</h1>
@@ -68,8 +82,7 @@ class App extends Component {
                 </button>
                 {persons}
             </div>
-            // React.createElement('div',null,'h1','Hi I\'m a react App'); // This is actually how react complies it.
-        );
+        )
     }
 }
 

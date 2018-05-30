@@ -2,10 +2,21 @@
      text-align: center;
  }
 
-.button {
-    backgroundColor: green;
+.button.red {
+    background-color: red;
     font: inherit;
     border: 1px solid blue;
     padding: 8px;
-    cursor: pointer
+    cursor: pointer;
+    text-align:center;
+}
+
+.button.green {
+    background-color: green;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+    text-align:center;
+
 }

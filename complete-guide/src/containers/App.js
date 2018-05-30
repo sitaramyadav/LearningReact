@@ -73,13 +73,13 @@ class App extends Component {
     render() {
 
         let persons = null;
-        // const style = {
-        //     backgroundColor: 'white',
-        //     font: 'inherit',
-        //     border: '1px solid blue',
-        //     padding: '8px',
-        //     cursor: 'pointer'
-        // }
+        const style = {
+            backgroundColor: 'green',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        }
 
         if (this.state.showPerson) {
             persons = (
@@ -108,7 +108,7 @@ class App extends Component {
             <div className={"App"}>
                 <h1>Hi, I am React App</h1>
                 <p > This is really cool</p>
-                <button  onClick={this.togglePersonHandler}>Show Persons
+                <button style={style}  onClick={this.togglePersonHandler}>Show Persons
                 </button>
                     {/*appTitle={this.props.title}*/}
                     {/*showPersons={this.state.showPerson}*/}

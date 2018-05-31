@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import './App.css';
-import classes from './App.css'
-import Person from './../components/Persons/Person/Person'
-// import Cockpit from './../components/cockpit/Cockpit'
+import classes from './App.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.togglePersonHandler = this.togglePersonHandler.bind(this);
         this.deletePersonHandler = this.deletePersonHandler.bind(this);
         this.nameChangeHandler = this.nameChangeHandler.bind(this);
@@ -54,43 +54,22 @@ class App extends Component {
     render() {
 
         let persons = null;
-        let btnClass = 'button green';
 
         if (this.state.showPersons) {
-            persons = (
-                <div>{
-                    this.state.persons.map((person, index) => {
-                        return <Person
-                            name={person.name}
-                            age={person.age}
-                            key={person.id}
-                            click={() => this.deletePersonHandler(person.id)}
-                            changed={(event) => this.nameChangeHandler(event, person.id)}
-                        />
-                    })
-                }
-                </div>
-            )
-            btnClass = 'button red'
-        }
-
-        const assignedClasses = [];
-
-        if (this.state.persons.length <= 2) {
-            assignedClasses.push(classes.red);
-        }
-
-        if (this.state.persons.length <= 1) {
-            assignedClasses.push(classes.bold);
+            persons = <ErrorBoundary key='id'>
+                <Persons
+                    persons={this.state.persons}
+                    clicked={this.deletePersonHandler}
+                    changed={this.nameChangeHandler}/>
+            </ErrorBoundary>
         }
 
         return (
             <div className={classes.App}>
-                <h1>Hi, I am React App</h1>
-                <p className={assignedClasses.join(' ')}> This is really cool</p>
-                <button
-                    className={btnClass}
-                    onClick={this.togglePersonHandler}>Toggle Persons</button>
+                <Cockpit
+                    showPersons={this.state.showPersons}
+                    persons={this.state.persons}
+                    clicked={this.togglePersonHandler}/>
                 {persons}
             </div>
         )

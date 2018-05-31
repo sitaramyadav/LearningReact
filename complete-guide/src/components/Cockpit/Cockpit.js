@@ -12,6 +12,7 @@ const Cockpit = (props) => {
 
     if (props.persons.length <= 2) {
         assignedClasses.push(classes.Red);
+        console.log(assignedClasses,'===',classes.Red)
     }
 
     if (props.persons.length <= 1) {

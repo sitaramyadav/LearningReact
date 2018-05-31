@@ -6,7 +6,8 @@ import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        console.log('[App.js] Inside constructor ', props);
         this.togglePersonHandler = this.togglePersonHandler.bind(this);
         this.deletePersonHandler = this.deletePersonHandler.bind(this);
         this.nameChangeHandler = this.nameChangeHandler.bind(this);
@@ -20,6 +21,28 @@ class App extends Component {
             showPersons: false
         }
     }
+
+    // state = {
+    //     persons: [
+    //         {id: 'first_person', name: 'Max', age: 21},
+    //         {id: 'second_person', name: 'Maxmallian', age: 23},
+    //         {id: 'thired_person', name: 'Brandon', age: 25}
+    //     ],
+    //     otherState: 'some other value',
+    //     showPersons: false
+    // }
+
+    // this is the new way of defining state.
+
+    componentWillMount() {
+        console.log('[App.js] Inside ComponentWillMount()');
+    }
+
+    componentDidMount( ) {
+        console.log('[App.js] Inside componentDidMount()');
+    }
+
+
 
     nameChangeHandler(event, id) {
         const personIndex = this.state.persons.findIndex(p => {
@@ -53,6 +76,8 @@ class App extends Component {
 
     render() {
 
+        console.log('[App.js] Inside render()')
+
         let persons = null;
 
         if (this.state.showPersons) {
@@ -67,9 +92,10 @@ class App extends Component {
         return (
             <div className={classes.App}>
                 <Cockpit
+                    appTitle={this.props.title}
                     showPersons={this.state.showPersons}
                     persons={this.state.persons}
-                    clicked={this.togglePersonHandler}/>
+                    clicked={this.togglePersonHandler} />
                 {persons}
             </div>
         )

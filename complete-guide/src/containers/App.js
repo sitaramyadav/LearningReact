@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
+import Radium, {style} from 'radium';
 
-class App extends Component {
+class App extends PureComponent {
     constructor(props) {
         super(props);
-        console.log('[App.js] Inside constructor ', props);
+        console.log('[App.js] Inside constructor ====', classes.bold,'=====7');
         this.togglePersonHandler = this.togglePersonHandler.bind(this);
         this.deletePersonHandler = this.deletePersonHandler.bind(this);
         this.nameChangeHandler = this.nameChangeHandler.bind(this);
@@ -41,6 +42,26 @@ class App extends Component {
     componentDidMount( ) {
         console.log('[App.js] Inside componentDidMount()');
     }
+
+    // shouldComponentUpdate (nextProps, nextState ) {
+    //     console.log('[UPDATE App.js] Inside shouldComponentUpdate() ');
+    //
+    //     // return true;
+    //     return nextProps.persons !== this.props.persons ||
+    //     nextState.showPersons !==this.state.showPersons;
+    // }
+
+    // PureComponent does this without using shouldComponentUpdate.
+    // React checks if there is any changes in props and state then only update the dom else don't
+
+    componentWillUpdate ( mextProps, nextState) {
+        return console.log('[UPDATE App.js] Inside componentWillUpdate() ');
+    }
+
+    componentDidUpdate ( ) {
+        console.log('[UPDATE App.js] Inside componentDidUpdate');
+    }
+
 
 
 
@@ -102,4 +123,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Radium(App);

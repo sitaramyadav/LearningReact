@@ -8,14 +8,6 @@ class Persons extends PureComponent {
         console.log('[Persons.js] Inside constructor');
     }
 
-    componentWillUpdate ( mextProps, nextState) {
-        return console.log('[UPDATE Persons.js] Inside componentWillUpdate() ');
-    }
-
-    componentDidUpdate ( ) {
-        console.log('[UPDATE Person.js] Inside componentDidUpdate');
-    }
-
     componentWillMount() {
         console.log('[Persons.js] Inside ComponentWillMount()');
     }
@@ -24,19 +16,35 @@ class Persons extends PureComponent {
         console.log('[Persons.js] Inside componentDidMount()');
     }
 
+    componentWillUpdate ( mextProps, nextState) {
+        return console.log('[UPDATE Persons.js] Inside componentWillUpdate() ');
+    }
+
+    componentDidUpdate ( ) {
+        console.log('[UPDATE Persons.js] Inside componentDidUpdate');
+    }
+
     componentWillReceiveProps ( nextProps) {
         console.log('[Persons.js] Inside componentWillRecieveProps', nextProps);
     }
 
     // shouldComponentUpdate ( nextProps, nextState) {
-    //     console.log('[UPDATE Person.js] Inside the shouldComponentUpdate() ');
+    //     console.log('[UPDATE Person.js] Inside the shouldComponentUpdate() ', nextProps, nextState);
     //
-    //     return nextProps.persons !== this.props.persons ||
-    //         nextProps.changed !== this.props.changed ||
-    //         nextProps.clicked !== this.props.clicked;
+    //     // return nextProps.persons !== this.props.persons ||
+    //     //     nextProps.changed !== this.props.changed ||
+    //     //     nextProps.clicked e!== this.props.clicked;
     //
-    //     //    return true
+    //        return false
     // }
+
+    componentWillUpdate ( mextProps, nextState) {
+        return console.log('[UPDATE Persons.js] Inside componentWillUpdate() ', nextState, nextState);
+    }
+
+    componentDidUpdate( ) {
+        console.log('[Persons.js] Inside componentDidUpdate()');
+    }
 
     render ( ) {
         console.log('[Persons.js] Inside componentDidMount()');

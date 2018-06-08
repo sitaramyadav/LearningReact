@@ -1,14 +1,12 @@
 import React, {PureComponent} from 'react';
-import classes from './App.css';
+import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
-import Radium, {style} from 'radium';
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
-        console.log('[App.js] Inside constructor ====', classes.bold,'=====7');
         this.togglePersonHandler = this.togglePersonHandler.bind(this);
         this.deletePersonHandler = this.deletePersonHandler.bind(this);
         this.nameChangeHandler = this.nameChangeHandler.bind(this);
@@ -111,7 +109,7 @@ class App extends PureComponent {
         }
 
         return (
-            <div className={classes.App}>
+            <div className="App">
                 <Cockpit
                     appTitle={this.props.title}
                     showPersons={this.state.showPersons}
@@ -123,4 +121,4 @@ class App extends PureComponent {
     }
 }
 
-export default Radium(App);
+export default App;

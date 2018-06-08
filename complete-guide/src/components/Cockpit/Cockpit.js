@@ -1,6 +1,6 @@
 import React from 'react';
 import './Cockpit.css'
-import Aux from '../../hoc/Aux';
+import WithClass from '../../hoc/WithClass';
 
 const Cockpit = (props) => {
 
@@ -22,7 +22,7 @@ const Cockpit = (props) => {
     }
 
     return (
-        <Aux>
+        <WithClass classes = {classes.Cockpit}>
             <button onClick={() => {
             }}>Show Person
             </button>
@@ -32,7 +32,7 @@ const Cockpit = (props) => {
                 className={btnClass}
                 onClick={props.clicked}>Toggle Persons
             </button>
-        </Aux>
+        </WithClass>
     )
 };
 

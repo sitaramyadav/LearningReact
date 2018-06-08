@@ -3,6 +3,7 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
+import WithClass from '../hoc/WithClass';
 
 class App extends PureComponent {
     constructor(props) {
@@ -98,6 +99,7 @@ class App extends PureComponent {
         console.log('[App.js] Inside render()')
 
         let persons = null;
+        const classes = {App:'App'}
 
         if (this.state.showPersons) {
             persons = <ErrorBoundary key='id'>
@@ -109,14 +111,14 @@ class App extends PureComponent {
         }
 
         return (
-            <div className="App">
+            <WithClass className={classes.App}>
                 <Cockpit
                     appTitle={this.props.title}
                     showPersons={this.state.showPersons}
                     persons={this.state.persons}
                     clicked={this.togglePersonHandler} />
                 {persons}
-            </div>
+            </WithClass>
         )
     }
 }
